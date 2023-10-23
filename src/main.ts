@@ -1,6 +1,5 @@
-require('dotenv').config();
-
-import session from 'express-session';
+/* eslint-disable @typescript-eslint/no-var-requires */
+import * as session from 'express-session';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { serverConfig } from './config/server';
@@ -10,6 +9,7 @@ const {
 } = serverConfig;
 
 async function bootstrap() {
+  require('dotenv').config();
   const app = await NestFactory.create(AppModule);
   app.use(
     session({
