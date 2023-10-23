@@ -1,0 +1,15 @@
+#import "./fragmentUser.graphql"
+#import "../pothos/fragmentPageInfo.graphql"
+query Users($after: String, $before: String, $first: Int, $last: Int) {
+  users(after: $after, before: $before, first: $first, last: $last) {
+    edges {
+      node {
+        ...userFragment
+      }
+    }
+    pageInfo {
+      ...pageInfoFragment
+    }
+    totalCount
+  }
+}

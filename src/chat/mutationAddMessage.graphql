@@ -1,0 +1,6 @@
+#import "./fragmentChat.graphql"
+mutation AddMessage($message: String!, $roomId: String!, $userId: String!) {
+  addMessage(message: $message, roomId: $roomId, userId: $userId) {
+    ...chatFragment
+  }
+}

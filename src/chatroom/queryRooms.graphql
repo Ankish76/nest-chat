@@ -1,0 +1,15 @@
+#import "./fragmentChatRoom.graphql"
+#import "../pothos/fragmentPageInfo.graphql"
+query Rooms($after: String, $before: String, $first: Int, $last: Int) {
+  rooms(after: $after, before: $before, first: $first, last: $last) {
+    edges {
+      node {
+        ...chatRoomFragment
+      }
+    }
+    pageInfo {
+      ...pageInfoFragment
+    }
+    totalCount
+  }
+}

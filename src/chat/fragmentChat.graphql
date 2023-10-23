@@ -1,0 +1,7 @@
+fragment chatFragment on Chat {
+  id
+  message
+  type
+  createdAt
+  updatedAt
+}

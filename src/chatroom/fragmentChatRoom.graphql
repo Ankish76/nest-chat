@@ -1,0 +1,7 @@
+fragment chatRoomFragment on ChatRoom {
+  id
+  name
+  haveJoined
+  createdAt
+  updatedAt
+}

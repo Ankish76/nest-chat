@@ -1,0 +1,6 @@
+#import "./fragmentChat.graphql"
+subscription ChatSub($roomId: String!) {
+  chatSub(roomId: $roomId) {
+    ...chatFragment
+  }
+}

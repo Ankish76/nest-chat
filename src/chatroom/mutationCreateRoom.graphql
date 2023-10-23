@@ -1,0 +1,6 @@
+#import "./fragmentChatRoom.graphql"
+mutation CreateRoom($name: String!) {
+  createRoom(name: $name) {
+    ...chatRoomFragment
+  }
+}

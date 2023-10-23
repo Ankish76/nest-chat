@@ -1,0 +1,93 @@
+type Chat {
+  createdAt: DateTime!
+  id: ID!
+  message: String!
+  room: ChatRoom!
+  type: String!
+  updatedAt: DateTime!
+  user: User!
+}
+
+type ChatRoom {
+  chats: [Chat!]!
+  createdAt: DateTime!
+  haveJoined: Boolean!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  users: [User!]!
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type Mutation {
+  addMessage(message: String!, roomId: String!, userId: String!): Chat!
+  createRoom(name: String!): ChatRoom!
+  joinRoom(name: String!, roomId: String!): User!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Query {
+  chats(after: String, before: String, first: Int, last: Int, roomId: String!): QueryChatsConnection!
+  rooms(after: String, before: String, first: Int, last: Int): QueryRoomsConnection!
+  users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
+}
+
+type QueryChatsConnection {
+  edges: [QueryChatsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type QueryChatsConnectionEdge {
+  cursor: String!
+  node: Chat!
+}
+
+type QueryRoomsConnection {
+  edges: [QueryRoomsConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type QueryRoomsConnectionEdge {
+  cursor: String!
+  node: ChatRoom!
+}
+
+type QueryUsersConnection {
+  edges: [QueryUsersConnectionEdge]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type QueryUsersConnectionEdge {
+  cursor: String!
+  node: User!
+}
+
+type Subscription {
+  chatSub(roomId: String!): Chat!
+}
+
+type User {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  rooms: [ChatRoom!]!
+  updatedAt: DateTime!
+}

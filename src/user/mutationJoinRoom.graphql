@@ -1,0 +1,6 @@
+#import "./fragmentUser.graphql"
+mutation JoinRoom($name: String!, $roomId: String!) {
+  joinRoom(name: $name, roomId: $roomId) {
+    ...userFragment
+  }
+}
