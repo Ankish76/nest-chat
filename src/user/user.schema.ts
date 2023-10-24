@@ -70,6 +70,12 @@ export class UserSchema extends PothosSchema {
       }),
     );
     this.builder.queryFields((t) => ({
+      sessionUser: t.field({
+        type: this.user(),
+        nullable: true,
+        resolve: (parent, args, context, info) =>
+          this.prisma.user.findUnique({ where: { id: context.user?.id } }),
+      }),
       users: t.prismaConnection(
         {
           type: this.user(),

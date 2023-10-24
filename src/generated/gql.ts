@@ -23,6 +23,7 @@ const documents = {
     "fragment pageInfoFragment on PageInfo {\n  endCursor\n  hasNextPage\n  hasPreviousPage\n  startCursor\n}": types.PageInfoFragmentFragmentDoc,
     "fragment userFragment on User {\n  id\n  name\n  createdAt\n  updatedAt\n}": types.UserFragmentFragmentDoc,
     "mutation JoinRoom($name: String!, $roomId: String!) {\n  joinRoom(name: $name, roomId: $roomId) {\n    ...userFragment\n  }\n}": types.JoinRoomDocument,
+    "query SessionUser {\n  sessionUser {\n    ...userFragment\n  }\n}": types.SessionUserDocument,
     "query Users($after: String, $before: String, $first: Int, $last: Int) {\n  users(after: $after, before: $before, first: $first, last: $last) {\n    edges {\n      node {\n        ...userFragment\n      }\n    }\n    pageInfo {\n      ...pageInfoFragment\n    }\n    totalCount\n  }\n}": types.UsersDocument,
 };
 
@@ -80,6 +81,10 @@ export function graphql(source: "fragment userFragment on User {\n  id\n  name\n
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation JoinRoom($name: String!, $roomId: String!) {\n  joinRoom(name: $name, roomId: $roomId) {\n    ...userFragment\n  }\n}"): (typeof documents)["mutation JoinRoom($name: String!, $roomId: String!) {\n  joinRoom(name: $name, roomId: $roomId) {\n    ...userFragment\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query SessionUser {\n  sessionUser {\n    ...userFragment\n  }\n}"): (typeof documents)["query SessionUser {\n  sessionUser {\n    ...userFragment\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

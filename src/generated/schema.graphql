@@ -44,6 +44,7 @@ type PageInfo {
 type Query {
   chats(after: String, before: String, first: Int, last: Int, roomId: String!): QueryChatsConnection!
   rooms(after: String, before: String, first: Int, last: Int): QueryRoomsConnection!
+  sessionUser: User
   users(after: String, before: String, first: Int, last: Int): QueryUsersConnection!
 }
 
