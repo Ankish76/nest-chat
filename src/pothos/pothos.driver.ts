@@ -46,6 +46,7 @@ export class PothosApolloDriver extends ApolloDriver {
     }
     return super.start({
       ...options,
+      allowBatchedHttpRequests: true,
       context: ({ req, res }) => {
         let initContext = {};
         if (options.context) {
