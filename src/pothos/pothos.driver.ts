@@ -58,6 +58,8 @@ export class PothosApolloDriver extends ApolloDriver {
         }
         return {
           ...initContext,
+          req,
+          res,
           user: getSessionUser(req),
           ...initContextCache(),
           // get getLoader() {

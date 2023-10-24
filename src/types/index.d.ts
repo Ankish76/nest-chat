@@ -8,6 +8,8 @@ export type ISessionUser = {
 };
 export type Context = {
   user?: ISessionUser | null;
+  req: Express.Request;
+  req: Express.Response;
   // getLoader: <K, V>(ref: LoadableRef<K, V, Context>) => DataLoader<K, V>; // helper to get a loader from a ref
   // load: <K, V>(ref: LoadableRef<K, V, Context>, id: K) => Promise<V>; // helper for loading a single resource
   // loadMany: <K, V>(

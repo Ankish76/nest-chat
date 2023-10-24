@@ -10,6 +10,7 @@ import {
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RedisPubsubService } from 'src/redis-pubsub/redis-pubsub.service';
+import { setSessionUser } from 'src/utils/session';
 
 @Injectable()
 export class UserSchema extends PothosSchema {
@@ -43,7 +44,7 @@ export class UserSchema extends PothosSchema {
           name: t.arg.string({ required: true }),
           roomId: t.arg.string({ required: true }),
         },
-        resolve: async (root, { name, roomId }) => {
+        resolve: async (root, { name, roomId }, context) => {
           const user = await this.prisma.user.create({
             include: { chats: true },
             data: {
@@ -63,6 +64,7 @@ export class UserSchema extends PothosSchema {
             },
           });
           this.pubsub.publish(`chat-added-${roomId}`, user.chats[0]);
+          setSessionUser(context.req, user);
           return user;
         },
       }),
